@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f7f3">
+  <title>Officer dashboard | Micro-Empathy AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <script src="{{ url_for('static', filename='js/app.js') }}" defer></script>
+</head>
+<body class="dashboard-page">
+  <aside class="sidebar">
+    <a class="brand" href="/" aria-label="Micro-Empathy AI home">
+      <span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></span>
+      <span class="brand-name">Micro-Empathy <b>AI</b></span>
+    </a>
+    <div class="sidebar-section-label">WORKSPACE</div>
+    <nav class="sidebar-nav" aria-label="Officer navigation">
+      <a class="sidebar-link active" href="/dashboard"><span class="sidebar-icon" aria-hidden="true">▤</span> Complaint queue <span class="sidebar-count" id="sidebar-total">0</span></a>
+      <a class="sidebar-link" href="/"><span class="sidebar-icon" aria-hidden="true">＋</span> Citizen intake</a>
+    </nav>
+    <div class="sidebar-bottom">
+      <span class="online-indicator"></span><span>Local demo workspace</span>
+      <div class="sidebar-version">TRIAGE SUPPORT · PROTOTYPE</div>
+    </div>
+  </aside>
+
+  <main class="dashboard-main">
+    <header class="dashboard-header">
+      <div>
+        <p class="eyebrow">PUBLIC SERVICE OPERATIONS <span class="header-slash">/</span> INBOX</p>
+        <h1>Officer dashboard</h1>
+        <p class="dashboard-subtitle">Review incoming reports and move each case through the response queue.</p>
+      </div>
+      <div class="header-actions">
+        <button class="button button-quiet" id="enable-alerts" type="button" title="Allow browser notifications for new critical complaints"><span aria-hidden="true">◉</span> Enable alerts</button>
+        <a class="button button-primary" href="/">＋ New complaint</a>
+      </div>
+    </header>
+
+    <section class="verification-banner" aria-label="Human verification reminder">
+      <span class="verification-mark" aria-hidden="true">!</span>
+      <p><strong>Decision support only.</strong> AI priorities are estimates from complaint text, not confirmed emergencies. Verify critical reports and follow local response protocols.</p>
+      <span class="banner-tag">OFFICER REVIEW REQUIRED</span>
+    </section>
+
+    <section class="critical-alert" id="critical-alert" role="alert" aria-live="assertive" hidden>
+      <div class="critical-symbol" aria-hidden="true">!</div>
+      <div><p class="critical-kicker">🚨 CRITICAL COMPLAINT</p><h2 id="critical-alert-title">Immediate officer verification required</h2><p id="critical-alert-copy">Review the reported details and verify the situation directly.</p></div>
+      <span class="critical-action">VERIFY NOW <span aria-hidden="true">→</span></span>
+    </section>
+
+    <section class="stats-grid" aria-label="Complaint totals">
+      <article class="stat-block stat-total"><span class="stat-label">ALL COMPLAINTS</span><strong id="stat-total">—</strong><span class="stat-footnote">In this local queue</span></article>
+      <article class="stat-block stat-critical"><span class="stat-label"><i></i> CRITICAL</span><strong id="stat-critical">—</strong><span class="stat-footnote">Verify immediately</span></article>
+      <article class="stat-block stat-high"><span class="stat-label"><i></i> HIGH</span><strong id="stat-high">—</strong><span class="stat-footnote">Prompt review</span></article>
+      <article class="stat-block stat-medium"><span class="stat-label"><i></i> MEDIUM</span><strong id="stat-medium">—</strong><span class="stat-footnote">Officer assessment</span></article>
+      <article class="stat-block stat-normal"><span class="stat-label"><i></i> NORMAL</span><strong id="stat-normal">—</strong><span class="stat-footnote">Standard service queue</span></article>
+    </section>
+
+    <section class="queue-section" aria-labelledby="queue-title">
+      <div class="queue-heading">
+        <div><p class="eyebrow">INCOMING REPORTS</p><h2 id="queue-title">Complaint queue <span class="queue-count" id="queue-count">0</span></h2></div>
+        <div class="queue-tools">
+          <label class="sr-only" for="priority-filter">Filter by priority</label>
+          <select id="priority-filter" class="filter-select">
+            <option value="ALL">All priorities</option><option value="CRITICAL">Critical</option><option value="HIGH">High</option><option value="MEDIUM">Medium</option><option value="NORMAL">Normal</option>
+          </select>
+          <button class="button button-quiet" id="refresh-button" type="button" title="Refresh complaint queue"><span aria-hidden="true">↻</span> Refresh</button>
+          <button class="button button-demo" id="demo-button" type="button"><span aria-hidden="true">✳</span> Load demo data</button>
+        </div>
+      </div>
+      <p class="queue-message" id="queue-message" role="status" aria-live="polite"></p>
+      <div class="complaint-list" id="complaint-list" aria-live="polite">
+        <div class="loading-state"><span class="loading-spinner" aria-hidden="true"></span> Loading complaints…</div>
+      </div>
+      <div class="empty-state" id="empty-state" hidden>
+        <span class="empty-icon" aria-hidden="true">⌁</span><h3>No complaints in this view</h3><p>New citizen reports will appear here, sorted by their estimated priority.</p>
+        <button class="button button-demo" id="empty-demo-button" type="button">Load demo data</button>
+      </div>
+    </section>
+    <footer class="dashboard-footer"><span>MICRO-EMPATHY AI · LOCAL PROTOTYPE</span><span>Priority estimates must be verified by an officer</span></footer>
+  </main>
+</body>
+</html>

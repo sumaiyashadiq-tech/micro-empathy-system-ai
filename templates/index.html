@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f7f3">
+  <title>Micro-Empathy AI | Citizen desk</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <script src="{{ url_for('static', filename='js/app.js') }}" defer></script>
+</head>
+<body class="citizen-page">
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="Micro-Empathy AI home">
+      <span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></span>
+      <span class="brand-name">Micro-Empathy <b>AI</b></span>
+    </a>
+    <nav class="top-nav" aria-label="Main navigation">
+      <span class="nav-context">CITIZEN SERVICES</span>
+      <a class="nav-link" href="/dashboard">Officer dashboard <span aria-hidden="true">↗</span></a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="citizen-layout" aria-labelledby="page-title">
+      <div class="citizen-intro">
+        <p class="eyebrow"><span class="status-dot"></span> PUBLIC SERVICE INTAKE</p>
+        <h1 id="page-title">Every complaint is heard.<br><em>Emergencies are heard first.</em></h1>
+        <p class="intro-copy">Tell us what happened in your own words. Your report will be routed to the right officer for review.</p>
+        <div class="trust-note">
+          <span class="trust-icon" aria-hidden="true">i</span>
+          <p>Priority is an AI-assisted estimate based on complaint details. An officer verifies every urgent report.</p>
+        </div>
+        <div class="service-stamp"><span>01</span> CITIZEN INTAKE <i></i> <span>02</span> OFFICER REVIEW</div>
+      </div>
+
+      <section class="intake-panel" aria-labelledby="form-title">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">YOUR VOICE, YOUR WORDS</p>
+            <h2 id="form-title">Submit a complaint</h2>
+          </div>
+          <span class="secure-label"><span aria-hidden="true">●</span> LOCAL PROTOTYPE</span>
+        </div>
+        <form id="complaint-form">
+          <label class="field-label" for="language">Preferred language</label>
+          <div class="select-wrap">
+            <select id="language" name="language">
+              <option value="en">English</option>
+              <option value="ta">தமிழ் (Tamil)</option>
+            </select>
+            <span aria-hidden="true">⌄</span>
+          </div>
+
+          <div class="textarea-label-row">
+            <label class="field-label" for="complaint-text">What do you need help with?</label>
+            <span class="character-count" id="character-count">0 / 5,000</span>
+          </div>
+          <textarea id="complaint-text" name="complaint_text" maxlength="5000" rows="7" placeholder="Describe what happened, where it happened, and who may be affected…" required></textarea>
+
+          <div class="voice-row">
+            <button class="button button-voice" id="speak-button" type="button">
+              <span class="mic-icon" aria-hidden="true">🎙️</span> Speak complaint
+            </button>
+            <p class="voice-status" id="voice-status" role="status" aria-live="polite">Voice input is ready</p>
+          </div>
+
+          <div class="form-footer">
+            <span class="privacy-note"><span aria-hidden="true">⌑</span> Shared with the reviewing officer</span>
+            <button class="button button-primary" id="submit-button" type="submit">Submit complaint <span aria-hidden="true">→</span></button>
+          </div>
+          <p class="form-message" id="form-message" role="status" aria-live="polite"></p>
+        </form>
+      </section>
+    </section>
+
+    <section class="examples-section" aria-labelledby="examples-title">
+      <div class="examples-heading">
+        <div>
+          <p class="eyebrow">NOT SURE WHERE TO START?</p>
+          <h2 id="examples-title">A few ways to explain it</h2>
+        </div>
+        <span class="examples-hint">Select an example to use it</span>
+      </div>
+      <div class="example-list">
+        <button class="example-item" type="button" data-example="Enga area-la EB current poiduchu.">
+          <span class="example-number">01</span><span>“Enga area-la EB current poiduchu.”</span><span class="example-arrow" aria-hidden="true">↗</span>
+        </button>
+        <button class="example-item" type="button" data-example="Road-la accident nadandhirukku. Immediate help venum.">
+          <span class="example-number">02</span><span>“Road-la accident nadandhirukku. Immediate help venum.”</span><span class="example-arrow" aria-hidden="true">↗</span>
+        </button>
+        <button class="example-item" type="button" data-example="Enga veetla medical equipment depend pannura patient irukanga. Current immediately venum.">
+          <span class="example-number">03</span><span>“Patient at home depends on medical equipment. We need power immediately.”</span><span class="example-arrow" aria-hidden="true">↗</span>
+        </button>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer"><span>MICRO-EMPATHY AI</span><span>Hackathon prototype · Human review remains essential</span></footer>
+</body>
+</html>
